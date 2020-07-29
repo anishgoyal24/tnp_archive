@@ -55,9 +55,9 @@ def students_life_s(request):
     return render(request,'students.html')
 
 def contact_us(request):
-    memberList = ['ankit agarwal','yash','lavish bansal','nikhil banka', 'amritanshu', 'tushar gahlot', 'shruti jain',
-                  'dhwaj', 'tejinder', 'uzma', 'ansh', 'archit goswami', 'indranil', 'manas', 'pawan',
-                  'vishnu', 'abhishek']
+    memberList = ['Arjun Yadav','Aaina Goyal','Anish Agarwal','Hritik Bangar', 'Anirudh Kumar', 'Deepesh Chugh', 'Prateek Yadav',
+                  'Shubham Kadu', 'Aarsha Karjee', 'Ravi Dagar', 'Anupam Sharma', 'Anurag Gupta', 'Ujjawal', 'Rashmi', 'Balindu',
+                ]
     memberList.sort()
     return render(request,'contact_us.html',{'memberList':memberList})
 
