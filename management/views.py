@@ -1145,3 +1145,40 @@ def send_sms_view(request):
             messages.success(request,"SMS Sent and logged")
             return redirect('management:send_sms')
     return render(request, 'new/send_sms.html', {'form':form, 'send_sms_nav':'active'})
+
+@login_required
+@manager_required
+def add_single_student(request):
+     if request.method == 'POST':
+         form = add_single_student_form(request.POST)
+         if form.is_valid():
+             roll_no = form.cleaned_data.get('roll_no')
+             email = form.cleaned_data.get('email')
+             sem1 = form.cleaned_data.get('sem1')
+             sem2 = form.cleaned_data.get('sem2')
+             sem3 = form.cleaned_data.get('sem3')
+             sem4 = form.cleaned_data.get('sem4')
+             sem5 = form.cleaned_data.get('sem5')
+             sem6 = form.cleaned_data.get('sem6')
+             cgpa = form.cleaned_data.get('cgpa')
+             batch = form.cleaned_data.get('batch')
+             backlogs = form.cleaned_data.get('backlogs')
+             if student_email_db.objects.filter(rollno = roll_no).count()>0:
+                 messages.error(request,"Roll No "+roll_no+" is already in database.")
+                 return redirect('management:add_single_student')
+             elif student_email_db.objects.filter(email = email).count()>0:
+                 messages.error(request, "Student having email "+email+" is already in database.")
+                 return redirect('management:add_single_student')
+             elif not (int(batch) == current_batch_year.objects.get(name = 'Placement').year or int(batch) == current_batch_year.objects.get(name = 'Internship').year):
+                 messages.error(request,"Incorrect batch year")
+                 return redirect('management:add_single_student')
+             else:
+                 sdb_obj = student_email_db(rollno = str(roll_no).upper(), email = email,backlog=backlogs,cgpa = cgpa,sem1 = sem1, sem2=sem2, sem3 = sem3, sem4 = sem4, sem5 = sem5, sem6 = sem6, batch = batch)
+                 sdb_obj.save()
+                 act_obj = account_activation_check(roll_no = str(roll_no).upper(), db_obj = sdb_obj)
+                 act_obj.save()
+                 messages.success(request,"Student with roll number "+form.cleaned_data.get('roll_no')+" added successfully")
+             return redirect('management:add_single_student')
+     else:
+         form = add_single_student_form()
+     return render(request,'new/add_single_student.html',{'form':form, 'add_single_student':'active color-change'})

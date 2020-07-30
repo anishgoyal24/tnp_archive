@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^download_resume/$', views.get_resume_zip, name= 'r_downloader' ),
     url(r'^add_manager/$', views.create_manager, name= 'add_manager' ),
     url(r'^add_company/$', views.add_company, name= 'add_company' ),
+    url(r'^add_single_student/$', views.add_single_student, name= 'add_single_student' ),
     url(r'^login/$', auth_views.login, {'template_name': 'new/login.html', 'extra_context':{'log_nav_active':'active'}}, name='login'),
     url(r'^logout/$',auth_views.logout, {'next_page': 'management:login'}, name = 'logout'),
     url(r'^mod_pass/$', views.changepass, name= 'mod_pass' ),
