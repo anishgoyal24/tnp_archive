@@ -281,4 +281,16 @@ class sms_form(forms.Form):
                                                                'data-placeholder': 'Select Receiver'}))
     message_body = forms.CharField(required = True, label = 'SMS.(Max Char 140, Do not use any special character, For new line use \\n)', max_length=140,widget=forms.Textarea(attrs = {'class':'form-control', 'rows':'5', 'placeholder':"SMS.(Max Char 140, Do not use any special character, For new line use '\\n')",}))
 
+class add_single_student_form(forms.Form):
+    roll_no = forms.CharField(required = True, max_length=11, widget = forms.TextInput(attrs={'class':'form-control','pattern':'[0-9]{1,4}[a-zA-Z]{1,5}[0-9]{1,4}','title':'NSIT Roll Number Format - 0123ABC4567', 'placeholder':'Roll Number'}))
+    email = forms.EmailField(max_length=254, required = True, widget = forms.TextInput(attrs = {'class':'form-control', 'aria-describedby':'basic-addon1', 'placeholder':'Email'}))
+    sem1 = forms.DecimalField(max_digits=5,decimal_places=2,required = True, label = 'Sem 1 GPA', widget = forms.TextInput(attrs = {'class':'form-control',  'aria-describedby':'basic-addon1', 'placeholder':'Sem 1 GPA'}))
+    sem2 = forms.DecimalField(max_digits=5,decimal_places=2,required = True,label = 'Sem 2 GPA', widget = forms.TextInput(attrs = {'class':'form-control',  'aria-describedby':'basic-addon1', 'placeholder':'Sem 2 GPA'}))
+    sem3 = forms.DecimalField(max_digits=5,decimal_places=2,required = True,label = 'Sem 3 GPA', widget = forms.TextInput(attrs = {'class':'form-control',  'aria-describedby':'basic-addon1', 'placeholder':'Sem 3 GPA'}))
+    sem4 = forms.DecimalField(max_digits=5,decimal_places=2,required = True,label = 'Sem 4 GPA', widget = forms.TextInput(attrs = {'class':'form-control',  'aria-describedby':'basic-addon1', 'placeholder':'Sem 4 GPA'}))
+    sem5 = forms.DecimalField(max_digits=5,decimal_places=2,required = True,label = 'Sem 5 GPA', widget = forms.TextInput(attrs = {'class':'form-control',  'aria-describedby':'basic-addon1', 'placeholder':'Sem 5 GPA'}))
+    sem6 = forms.DecimalField(max_digits=5,decimal_places=2,required = True,label = 'Sem 6 GPA', widget = forms.TextInput(attrs = {'class':'form-control',  'aria-describedby':'basic-addon1', 'placeholder':'Sem 6 GPA'}))
+    batch = forms.IntegerField(required = True, label = 'Batch',  widget = forms.TextInput(attrs = {'class':'form-control',  'aria-describedby':'basic-addon1', 'pattern':'[0-9]{4}','title':'4 digit year only', 'placeholder':'Batch(Eg 2020)'}))
+    cgpa = forms.DecimalField(max_digits=5,decimal_places=2,required = True, label = 'CGPA', widget = forms.TextInput(attrs = {'class':'form-control',  'aria-describedby':'basic-addon1', 'placeholder':'CGPA'}))
+    backlogs = forms.DecimalField(max_digits=5,decimal_places=2,required = True, label = "Backlogs", widget = forms.TextInput(attrs = {'class':'form-control',  'aria-describedby':'basic-addon1'.  'placeholder':'Backlogs'}))
 
