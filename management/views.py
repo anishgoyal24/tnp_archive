@@ -1149,6 +1149,8 @@ def send_sms_view(request):
 @login_required
 @manager_required
 def add_single_student(request):
+    if not request.user.is_superuser:
+         raise Http404("Requested page is currently unavailable.")
      if request.method == 'POST':
          form = add_single_student_form(request.POST)
          if form.is_valid():
