@@ -68,7 +68,7 @@
                                         {% elif request.user.profile_set.check and request.user.student_profile.branch.branchType.name == 'MTECH' %}
                                     <div class="input-field col s12">
                                         <input disabled value="{{request.user.student_profile.sem6}}" id="sem6" type="text" class="validate" />
-                                        <label for="roll_no">MTech Aggr. CGPA</label>
+                                        <label for="roll_no">CGPA in your Graduation</label>
                                     </div>
                                     <div class="input-field col s12">
                                         <input disabled value="{{request.user.student_profile.backlogs}}" id="backlogs" type="text" class="validate" />
